@@ -180,8 +180,23 @@ export function WaitlistForm({ id }: { id: "hero" | "final" }) {
   );
 }
 
+/**
+ * Link people share. When the page is embedded (e.g. in a Blogger page at
+ * techalaraj.com/ai) the embed passes its own address as ?share=..., so
+ * friends get the nice link instead of the github.io one.
+ */
+function shareUrl(): string {
+  try {
+    const s = new URLSearchParams(window.location.search).get("share");
+    if (s && /^https:\/\/[^\s"<>]+$/.test(s)) return s;
+  } catch {
+    /* ignore */
+  }
+  return window.location.origin + window.location.pathname;
+}
+
 function ThankYou({ duplicate }: { duplicate: boolean }) {
-  const pageUrl = typeof window !== "undefined" ? window.location.origin + window.location.pathname : "";
+  const pageUrl = typeof window !== "undefined" ? shareUrl() : "";
   const waHref = `https://wa.me/?text=${encodeURIComponent(
     `كورس ومجتمع الذكاء الاصطناعي مع محمد الأعرج - سجّل بقائمة الانتظار وخذ دليل 30 أداة مجاناً: ${pageUrl}`,
   )}`;

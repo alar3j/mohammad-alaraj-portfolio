@@ -1,0 +1,28 @@
+<!--
+  TechAlaraj AI waitlist - Blogger page embed
+  Blogger > Pages > New page > switch to "HTML view" > paste everything below.
+  The waitlist shows full screen; ?src=instagram etc. on the Blogger link is passed through,
+  and the "share with a friend" button shares this Blogger address.
+-->
+<style>
+  html, body { overflow: hidden !important; }
+  #ta-waitlist {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
+    border: 0; margin: 0; z-index: 2147483647; background: #05080f;
+  }
+</style>
+<iframe id="ta-waitlist"
+  title="كورس ومجتمع الذكاء الاصطناعي مع محمد الأعرج - قائمة الانتظار"
+  src="https://alar3j.github.io/mohammad-alaraj-portfolio/waitlist/"
+  allow="clipboard-write; fullscreen; accelerometer; gyroscope"></iframe>
+<script>
+  (function () {
+    var f = document.getElementById("ta-waitlist");
+    var q = new URLSearchParams(location.search);
+    q.delete("m"); // Blogger's mobile flag
+    q.set("share", location.origin + location.pathname);
+    f.src = "https://alar3j.github.io/mohammad-alaraj-portfolio/waitlist/?" + q.toString();
+  })();
+</script>
+<img src="https://alar3j.github.io/mohammad-alaraj-portfolio/waitlist/brand/og-image.jpg"
+  alt="كورس ومجتمع الذكاء الاصطناعي مع محمد الأعرج" style="display:none" />
