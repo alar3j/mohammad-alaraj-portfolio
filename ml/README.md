@@ -9,6 +9,7 @@ free to host, and private.
 | `build_tool_index.py` | [`sentence-transformers/static-similarity-mrl-multilingual-v1`](https://huggingface.co/sentence-transformers/static-similarity-mrl-multilingual-v1) (Apache-2.0) | `public/ai/model.bin` · `vocab.txt` · `tools.json` (~2.3 MB) | **AI tool finder** - type what you want to do in Arabic, get the right tool from the guide, computed in the browser |
 | `depth_portrait.py` | [`depth-anything/Depth-Anything-V2-Small-hf`](https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf) (Apache-2.0) | `public/img/*-depth.png` | **3D scene around the real photo** - invisible depth occluder so particles/tiles wrap around the body (the photo itself is never deformed) |
 | `optimize_pdf.py` | – | `public/guide/*.pdf` | Lead-magnet PDF 7.8 MB → 2.8 MB, visually checked page by page |
+| `extract_logos.py` | – | `public/logos/<id>.webp` (30 × 128 px, 91 KB) | Tool logos taken from the guide itself (tile shapes matched to the tool names), shown in the logo strip, the finder results and the 3D galaxy |
 | `export_signups.py` | – | `signups-YYYY-MM-DD.csv` | CSV + report by source / time zone / day (stdlib only) |
 
 ```bash
@@ -17,6 +18,7 @@ pip install -r ml/requirements.txt
 python ml/build_tool_index.py          # prints retrieval accuracy, writes public/ai/*
 python ml/depth_portrait.py            # writes public/img/*-depth.png
 python ml/optimize_pdf.py original.pdf apps/waitlist/public/guide/TechAlaraj_30_AI_Tools_Guide.pdf
+python ml/extract_logos.py original.pdf   # writes public/logos/*.webp
 TECHALARAJ_ADMIN_KEY=... python ml/export_signups.py
 ```
 

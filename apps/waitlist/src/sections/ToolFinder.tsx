@@ -1,6 +1,6 @@
 import { L, Reveal } from "@/components/ui";
 import { scrollToHeroForm } from "@/components/WaitlistForm";
-import { BASE } from "@/config";
+import { BASE, logo } from "@/config";
 import { loadFinder, type Ranked, type ToolFinder as Finder } from "@/ai/finder";
 import { hasWebGL, isLowPower, saveData, useInViewport, useNearViewport, useReducedMotion } from "@/lib/env";
 import { ArrowUpLeft, Check, Copy, Cpu, Lightbulb, Search, Sparkles, Wand2 } from "lucide-react";
@@ -309,26 +309,41 @@ function ResultCard({
       className={`card pop-in p-4 md:p-5 ${best ? "!border-yellow/40 shadow-[0_20px_60px_-30px_rgba(255,212,0,.6)]" : ""}`}
       style={{ animationDelay: `${rank * 90}ms` }}
     >
-      <div className="flex flex-wrap items-center gap-2">
-        <span
-          className={`grid h-7 min-w-7 place-items-center rounded-lg px-1.5 text-[12px] font-bold ${best ? "bg-yellow text-ink" : "bg-white/10 text-fg"}`}
-        >
-          <L>{picked ? "★" : `#${rank + 1}`}</L>
-        </span>
-        <h3 className="text-[19px] font-bold text-fg">
-          <L>{t.name}</L>
-        </h3>
-        <span className="rounded-full border px-2 py-0.5 text-[11.5px] font-semibold" style={{ color: catColor, borderColor: `${catColor}55` }}>
-          {catName}
-        </span>
-        {!picked && r.match > 0 && (
-          <span className="ms-auto flex items-center gap-2 text-[12px] text-fg-3" title="درجة التطابق">
-            <span className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10">
-              <span className="progress-bar block h-full" style={{ width: `${r.match}%` }} />
+      <div className="flex items-center gap-3">
+        <img
+          src={logo(t.id)}
+          alt={`شعار ${t.name}`}
+          width={52}
+          height={52}
+          loading="lazy"
+          decoding="async"
+          className="h-12 w-12 flex-none rounded-[13px] shadow-[0_10px_24px_-10px_rgba(0,0,0,.9)] md:h-[52px] md:w-[52px]"
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span
+              className={`grid h-6 min-w-6 place-items-center rounded-md px-1.5 text-[11.5px] font-bold ${best ? "bg-yellow text-ink" : "bg-white/10 text-fg"}`}
+            >
+              <L>{picked ? "★" : `#${rank + 1}`}</L>
             </span>
-            <L>{r.match}%</L>
-          </span>
-        )}
+            <h3 className="text-[19px] font-bold leading-tight text-fg">
+              <L>{t.name}</L>
+            </h3>
+          </div>
+          <div className="mt-1.5 flex flex-wrap items-center gap-2">
+            <span className="rounded-full border px-2 py-0.5 text-[11.5px] font-semibold" style={{ color: catColor, borderColor: `${catColor}55` }}>
+              {catName}
+            </span>
+            {!picked && r.match > 0 && (
+              <span className="ms-auto flex items-center gap-2 text-[12px] text-fg-3" title="درجة التطابق">
+                <span className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10">
+                  <span className="progress-bar block h-full" style={{ width: `${r.match}%` }} />
+                </span>
+                <L>{r.match}%</L>
+              </span>
+            )}
+          </div>
+        </div>
       </div>
       <p className="mt-3 text-[14.5px] leading-[1.85] text-fg">
         <strong className="text-yellow">شو هي: </strong>

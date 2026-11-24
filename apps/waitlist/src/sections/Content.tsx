@@ -1,7 +1,7 @@
 import { Faq } from "@/components/Faq";
 import { CountUp, Hl, L, Reveal, SectionHead, TiltCard, VerifiedBadge } from "@/components/ui";
 import { scrollToHeroForm, WaitlistForm } from "@/components/WaitlistForm";
-import { IMG, INSTAGRAM_URL, SITE_HOME } from "@/config";
+import { IMG, INSTAGRAM_URL, SITE_HOME, logo } from "@/config";
 import {
   BellRing,
   BriefcaseBusiness,
@@ -49,31 +49,46 @@ export function TopBar() {
 }
 
 /* ---------------------------------------------------------- marquee -- */
-const TOOL_NAMES = [
-  "ChatGPT", "Gemini", "Claude", "Copilot", "DeepSeek", "Grok", "Meta AI", "Perplexity", "NotebookLM", "Manus",
-  "Notion AI", "Gamma", "Napkin AI", "Canva", "Midjourney", "Ideogram", "Firefly", "Photoroom", "CapCut", "Runway",
-  "Kling", "Hailuo", "Veo", "HeyGen", "Opus Clip", "ElevenLabs", "Suno", "Lovable", "Zapier", "n8n",
+const TOOLS: [number, string][] = [
+  [1, "ChatGPT"], [2, "Gemini"], [3, "Claude"], [4, "Copilot"], [5, "DeepSeek"], [6, "Grok"], [7, "Meta AI"],
+  [8, "Perplexity"], [9, "NotebookLM"], [10, "Manus"], [11, "Notion AI"], [12, "Gamma"], [13, "Napkin AI"],
+  [14, "Canva"], [15, "Midjourney"], [16, "Ideogram"], [17, "Firefly"], [18, "Photoroom"], [19, "CapCut"],
+  [20, "Runway"], [21, "Kling"], [22, "Hailuo"], [23, "Veo"], [24, "HeyGen"], [25, "Opus Clip"],
+  [26, "ElevenLabs"], [27, "Suno"], [28, "Lovable"], [29, "Zapier"], [30, "n8n"],
 ];
 
 export function ToolMarquee() {
   const row = (
-    <ul className="flex shrink-0 items-center gap-8 pe-8" dir="ltr">
-      {TOOL_NAMES.map(n => (
-        <li key={n} className="ltr whitespace-nowrap text-[15px] font-semibold text-fg-3">
-          {n}
+    <ul className="flex shrink-0 items-center gap-7 pe-7 md:gap-9 md:pe-9" dir="ltr">
+      {TOOLS.map(([id, name]) => (
+        <li key={id} className="flex items-center gap-2.5 whitespace-nowrap">
+          <img
+            src={logo(id)}
+            alt=""
+            width={40}
+            height={40}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            className="h-9 w-9 select-none rounded-[10px] shadow-[0_6px_18px_-8px_rgba(0,0,0,.8)] md:h-10 md:w-10"
+          />
+          <span className="ltr text-[14px] font-semibold text-fg-2 md:text-[15px]">{name}</span>
         </li>
       ))}
     </ul>
   );
   return (
-    <div className="relative border-y border-white/[0.05] py-4" aria-label="30 أداة بالدليل">
-      <p className="sr-only">الدليل بيغطي 30 أداة، منها: {TOOL_NAMES.join("، ")}</p>
+    <div className="relative border-y border-white/[0.05] py-5" aria-label="30 أداة بالدليل">
+      <p className="mb-4 text-center text-[13px] font-semibold text-fg-3">
+        الـ<L>30</L> أداة اللي بيشرحها الدليل المجاني
+      </p>
+      <p className="sr-only">الأدوات: {TOOLS.map(t => t[1]).join("، ")}</p>
       <div
-        className="overflow-hidden"
+        className="marquee-wrap overflow-hidden"
         aria-hidden="true"
         style={{
-          WebkitMaskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)",
-          maskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)",
+          maskImage: "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)",
         }}
         dir="ltr"
       >

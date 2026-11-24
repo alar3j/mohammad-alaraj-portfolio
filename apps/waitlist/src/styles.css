@@ -503,7 +503,10 @@
   .marquee {
     display: flex;
     width: max-content;
-    animation: marquee 40s linear infinite;
+    animation: marquee 55s linear infinite;
+  }
+  .marquee-wrap:hover .marquee {
+    animation-play-state: paused;
   }
   @keyframes marquee {
     from {

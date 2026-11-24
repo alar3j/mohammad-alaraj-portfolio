@@ -9,6 +9,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import { logo } from "../config";
 import type { Category, Tool } from "../ai/finder";
 
 type Props = {
@@ -243,6 +244,7 @@ function Galaxy({ tools, categories, ranked, thinking, reduced, onSelect }: Omit
                 border: r === 0 ? "none" : "1px solid rgba(255,255,255,.16)",
               }}
             >
+              <img src={logo(t.id)} alt="" width={18} height={18} className="h-[18px] w-[18px] rounded-[5px]" />
               {r >= 0 && <span className="opacity-70">#{r + 1}</span>}
               {t.name}
             </span>

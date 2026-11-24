@@ -4,6 +4,8 @@ export const WAITLIST_API: string =
 
 export const BASE = import.meta.env.BASE_URL; // "./" - the site works under any path
 export const asset = (path: string) => `${BASE}${path}`;
+/** Tool logos extracted from the guide PDF by ml/extract_logos.py (128x128 WebP). */
+export const logo = (toolId: number) => asset(`logos/${toolId}.webp`);
 
 export const GUIDE_FILE = "TechAlaraj_30_AI_Tools_Guide.pdf";
 export const GUIDE_URL = asset(`guide/${GUIDE_FILE}`);
