@@ -1,0 +1,11 @@
+# Offline asset pipeline for the waitlist page (not needed at runtime).
+# pip install -r ml/requirements.txt
+huggingface_hub>=2.4
+tokenizers>=0.23
+safetensors>=0.8
+numpy>=2.0
+wordfreq>=3.1
+transformers>=5.0      # depth_portrait.py
+torch>=2.5             # depth_portrait.py (CPU is fine)
+pillow>=11
+pymupdf>=1.24          # optimize_pdf.py
