@@ -61,14 +61,18 @@ export function Hero() {
   );
 }
 
-/** Static photo first (fast LCP), the WebGL portrait fades in when idle. */
+/**
+ * The real photo is always a plain <img> (never re-rendered or deformed).
+ * A transparent WebGL layer fades in on top when the browser is idle and adds
+ * tiles, particles and a light scan around it.
+ */
 function HeroPortrait() {
   const reduced = useReducedMotion();
   const [want3D, setWant3D] = useState(false);
   const [ready, setReady] = useState(false);
   const [lowPower, setLowPower] = useState(true);
   const [ref, visible] = useInViewport<HTMLDivElement>("120px");
-  const onReady = useCallback(() => window.setTimeout(() => setReady(true), 120), []);
+  const onReady = useCallback(() => window.setTimeout(() => setReady(true), 80), []);
 
   useEffect(() => {
     if (reduced || !hasWebGL()) return;
@@ -81,12 +85,27 @@ function HeroPortrait() {
       <div ref={ref} className="relative aspect-[640/858] w-full">
         <div className="hero-glow absolute inset-x-[-25%] bottom-[-5%] top-[8%] rounded-full" aria-hidden="true" />
 
+        <img
+          src={IMG.hero}
+          alt="محمد الأعرج"
+          width={640}
+          height={858}
+          fetchPriority="high"
+          decoding="async"
+          draggable={false}
+          className="relative block h-auto w-full select-none"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, #000 78%, transparent 100%)",
+          }}
+        />
+
         {want3D && (
           <div
-            className={`canvas-fade absolute left-[-25%] top-[-15%] h-[130%] w-[150%] ${ready ? "opacity-100" : "opacity-0"}`}
+            className={`canvas-fade pointer-events-none absolute left-[-25%] top-[-15%] h-[130%] w-[150%] ${ready ? "opacity-100" : "opacity-0"}`}
             style={{
-              WebkitMaskImage: "radial-gradient(closest-side, #000 58%, transparent 100%)",
-              maskImage: "radial-gradient(closest-side, #000 58%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(closest-side, #000 62%, transparent 100%)",
+              maskImage: "radial-gradient(closest-side, #000 62%, transparent 100%)",
             }}
           >
             <Suspense fallback={null}>
@@ -102,27 +121,7 @@ function HeroPortrait() {
             </Suspense>
           </div>
         )}
-
-        <img
-          src={IMG.hero}
-          alt="محمد الأعرج"
-          width={640}
-          height={858}
-          fetchPriority="high"
-          decoding="async"
-          draggable={false}
-          className={`canvas-fade relative block h-auto w-full select-none ${ready ? "pointer-events-none opacity-0" : "opacity-100"}`}
-          style={{
-            WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 100%)",
-            maskImage: "linear-gradient(to bottom, #000 78%, transparent 100%)",
-          }}
-        />
       </div>
-      {want3D && ready && (
-        <p className="relative z-[2] mt-1 text-center text-[11.5px] text-fg-3">
-          حرّك الماوس أو الجوال · صورة ثلاثية الأبعاد بعمق محسوب بالذكاء الاصطناعي
-        </p>
-      )}
     </div>
   );
 }

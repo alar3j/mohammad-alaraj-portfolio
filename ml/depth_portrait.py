@@ -3,10 +3,11 @@
 
 Model: depth-anything/Depth-Anything-V2-Small-hf (Apache-2.0) via 🤗 transformers.
 
-The photo itself is never altered. We only estimate *how far* every pixel is
-from the camera; the landing page then pushes the photo's pixels forward/back
-in a WebGL shader (three.js), so the portrait reacts to the mouse / phone tilt
-with real parallax instead of a flat image.
+The photo itself is never altered or re-rendered: the page always shows the
+original <img>. We only estimate *how far* every pixel is from the camera, and
+the three.js layer uses that as an invisible depth occluder, so the floating
+particles and glass tiles pass realistically behind / in front of the body,
+and the one-time light scan follows the body's relief.
 
 Post-processing
   * depth is normalised inside the person mask only (background ignored)

@@ -7,7 +7,7 @@ free to host, and private.
 | Script | Hugging Face model | Output | What it powers |
 | --- | --- | --- | --- |
 | `build_tool_index.py` | [`sentence-transformers/static-similarity-mrl-multilingual-v1`](https://huggingface.co/sentence-transformers/static-similarity-mrl-multilingual-v1) (Apache-2.0) | `public/ai/model.bin` · `vocab.txt` · `tools.json` (~2.3 MB) | **AI tool finder** - type what you want to do in Arabic, get the right tool from the guide, computed in the browser |
-| `depth_portrait.py` | [`depth-anything/Depth-Anything-V2-Small-hf`](https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf) (Apache-2.0) | `public/img/*-depth.png` | **3D portrait** in the hero - the real photo, displaced by its depth in a three.js shader |
+| `depth_portrait.py` | [`depth-anything/Depth-Anything-V2-Small-hf`](https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf) (Apache-2.0) | `public/img/*-depth.png` | **3D scene around the real photo** - invisible depth occluder so particles/tiles wrap around the body (the photo itself is never deformed) |
 | `optimize_pdf.py` | – | `public/guide/*.pdf` | Lead-magnet PDF 7.8 MB → 2.8 MB, visually checked page by page |
 | `export_signups.py` | – | `signups-YYYY-MM-DD.csv` | CSV + report by source / time zone / day (stdlib only) |
 

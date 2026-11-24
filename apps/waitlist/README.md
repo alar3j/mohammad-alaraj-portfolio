@@ -7,7 +7,7 @@ working outside Manus, with a stack that runs anywhere and costs nothing.
 ```
 apps/waitlist/            this project (Vite 8, React 19, TypeScript, Tailwind 4)
   src/sections/           page sections (Hero, ToolFinder, Content)
-  src/three/              3D scenes: three.js 0.187 + @react-three/fiber 9 + drei + postprocessing
+  src/three/              3D scenes: three.js 0.187 + @react-three/fiber 9 + drei (+ postprocessing in the galaxy)
   src/ai/                 in-browser Hugging Face model (WordPiece tokenizer + static embeddings)
   public/ai/              model files built by ml/build_tool_index.py (~2.3 MB, lazy-loaded)
   public/img/*-depth.png  depth maps built by ml/depth_portrait.py
@@ -57,11 +57,13 @@ and the admin page groups signups by source.
 ## Performance & accessibility
 
 - First paint = HTML + 93 KB gzip JS; fonts are self-hosted (IBM Plex Sans Arabic, Inter).
-- The hero photo shows instantly; the WebGL portrait (285 KB gzip, shared with the galaxy)
-  loads when the browser is idle and cross-fades in. The tool-finder model loads only
+- The hero photo is always the original `<img>` (never deformed). A transparent WebGL layer
+  (285 KB gzip, shared with the galaxy) loads when the browser is idle and adds tiles,
+  particles and a light scan around it; Depth Anything's depth map is used only as an
+  invisible occluder. A pixel test confirms the face region is identical with and without 3D. The tool-finder model loads only
   when its section approaches (not on Data Saver until used).
 - Render loops pause off-screen; phones get fewer particles and no bloom.
-- `prefers-reduced-motion`: no WebGL portrait, no auto-rotation, no reveal animations.
+- `prefers-reduced-motion`: no hero 3D layer, no auto-rotation, no reveal animations.
 - No WebGL: static images; the tool finder still works as a list.
 - Arabic error messages, `aria-invalid`/`aria-describedby`, live regions for results and
   the thank-you state, 54 px inputs with 16 px text (no iOS zoom).
