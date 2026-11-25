@@ -7,6 +7,9 @@ import "./styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import Home from "./pages/Home";
+import { loadThmanyah } from "./lib/fonts";
+
+void loadThmanyah(); // starts right away, in parallel with the first render
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

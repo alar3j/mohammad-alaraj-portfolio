@@ -4,3 +4,8 @@ node_modules
 !.env.example
 *.log
 test-results
+
+# Thmanyah font files: licensed for bundled use only, never commit or publish them
+fonts-private/
+*.otf
+*.ttf

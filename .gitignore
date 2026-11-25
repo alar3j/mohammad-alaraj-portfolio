@@ -8,3 +8,8 @@ __pycache__/
 !.env.example
 .DS_Store
 signups-*.csv
+
+# Thmanyah font files (license forbids redistributing them)
+*.otf
+*.ttf
+apps/waitlist/fonts-private/
