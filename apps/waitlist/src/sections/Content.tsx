@@ -390,7 +390,7 @@ export function AboutSection() {
               <div key={s.v} className="rounded-2xl border border-white/[0.06] bg-ink/60 p-4 text-center md:p-5">
                 <dt className="sr-only">{s.l}</dt>
                 <dd>
-                  <CountUp value={s.v} className="ltr block text-[28px] font-bold leading-tight text-fg md:text-[36px]" />
+                  <CountUp value={s.v} className="ltr t-num block text-[30px] text-fg md:text-[40px]" />
                   <span className="mt-1 block text-[13px] leading-snug text-fg-2 md:text-[14px]">{s.l}</span>
                 </dd>
               </div>

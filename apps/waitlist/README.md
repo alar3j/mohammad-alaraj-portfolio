@@ -56,7 +56,8 @@ and the admin page groups signups by source.
 
 ## Performance & accessibility
 
-- First paint = HTML + 93 KB gzip JS; fonts are self-hosted (IBM Plex Sans Arabic, Inter).
+- First paint = HTML + 93 KB gzip JS; one self-hosted variable font for Arabic and Latin:
+  Cairo (OFL, weights 200-1000, ~31 KB for Arabic). Type scale and weights live in `src/styles.css`.
 - The hero photo is always the original `<img>` (never deformed). A transparent WebGL layer
   (285 KB gzip, shared with the galaxy) loads when the browser is idle and adds tiles,
   particles and a light scan around it; Depth Anything's depth map is used only as an
